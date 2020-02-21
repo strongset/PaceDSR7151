@@ -1114,7 +1114,7 @@ def runTest():
                             ## Return DUT to initial state and de-initialize grabber device
                             NOS_API.deinitialize()
                             return
-                        if not (TEST_CREATION_API.compare_pictures("Signal_Info_ref", "Signal_Info_Ver", "[CubaV_Check]")):
+                        if not (TEST_CREATION_API.compare_pictures("Signal_Info_ref", "Signal_Info_Ver", "[AlJazeera]")):
                             TEST_CREATION_API.send_ir_rc_command("[Ver_CH]")
                             time.sleep(3)
                             if not(NOS_API.grab_picture("Signal_Info_Ver")):
@@ -1156,7 +1156,7 @@ def runTest():
                                 ## Return DUT to initial state and de-initialize grabber device
                                 NOS_API.deinitialize()
                                 return
-                            if not (TEST_CREATION_API.compare_pictures("Signal_Info_ref", "Signal_Info_Ver", "[CubaV_Check]")):
+                            if not (TEST_CREATION_API.compare_pictures("Signal_Info_ref", "Signal_Info_Ver", "[AlJazeera]")):
                                 TEST_CREATION_API.write_log_to_file("Doesn't Navigate to right place")
                                 NOS_API.update_test_slot_comment("Error code = " + NOS_API.test_cases_results_info.navigation_error_code \
                                                         + "; Error message: " + NOS_API.test_cases_results_info.navigation_error_message)
