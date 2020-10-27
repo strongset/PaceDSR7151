@@ -128,7 +128,7 @@ def runTest():
                                     return
                                 video_result_1 = NOS_API.mask_and_compare_pictures("IR_Ch_1080_ref", "IR_Picture", "IR_Ch_1080_MASK", TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD,"[FULL_SCREEN_1080]")
                                 video_result_2 = NOS_API.mask_and_compare_pictures("IR_Ch_Eng_1080_ref", "IR_Picture", "IR_Ch_1080_MASK_Eng", TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD,"[FULL_SCREEN_1080]")
-                                if (video_result_1 < TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD and video_result_2 < TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
+                                if (video_result_1 < NOS_API.thres and video_result_2 < NOS_API.thres):
                                     TEST_CREATION_API.send_ir_rc_command("[Exit_Menu]")
                                     time.sleep(1)
                                     TEST_CREATION_API.send_ir_rc_command("[SET_RESOLUTION_720p]")
@@ -173,14 +173,14 @@ def runTest():
                                         return
                                     video_result_1 = NOS_API.mask_and_compare_pictures("IR_Ch_1080_ref", "IR_Picture", "IR_Ch_1080_MASK", TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD,"[FULL_SCREEN_1080]")
                                     video_result_2 = NOS_API.mask_and_compare_pictures("IR_Ch_Eng_1080_ref", "IR_Picture", "IR_Ch_1080_MASK_Eng", TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD,"[FULL_SCREEN_1080]")
-                                    if (video_result_1 < TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD and video_result_2 < TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
+                                    if (video_result_1 < NOS_API.thres and video_result_2 < NOS_API.thres):
                                         NOS_API.update_test_slot_comment("Error code: " + NOS_API.test_cases_results_info.ir_nok_error_code \
                                         + "; Error message: " + NOS_API.test_cases_results_info.ir_nok_error_message)
                                         NOS_API.set_error_message("IR")
                                         error_codes = NOS_API.test_cases_results_info.ir_nok_error_code
                                         error_messages = NOS_API.test_cases_results_info.ir_nok_error_message                            
                                         test = "Fail"
-                                if (video_result_2 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
+                                if (video_result_2 >= NOS_API.thres):
                                     lang = "Eng"                            
                             elif (video_height == "576"):
                                 TEST_CREATION_API.send_ir_rc_command("[SET_RESOLUTION_720p]")
@@ -371,7 +371,7 @@ def runTest():
                                 return
                             video_result_1 = NOS_API.mask_and_compare_pictures("IR_Ch_720_ref", "IR_Picture", "IR_Ch_720_MASK")
                             video_result_2 = NOS_API.mask_and_compare_pictures("IR_Ch_Eng_720_ref", "IR_Picture", "IR_Ch_720_MASK_Eng")
-                            if (video_result_1 < TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD and video_result_2 < TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
+                            if (video_result_1 < NOS_API.thres and video_result_2 < NOS_API.thres):
                                 TEST_CREATION_API.send_ir_rc_command("[Exit_Menu]")
                                 time.sleep(1)
                                 TEST_CREATION_API.send_ir_rc_command("[SIGNAL_LEVEL_SETTINGS_720p]")
@@ -416,14 +416,14 @@ def runTest():
                                     return
                                 video_result_1 = NOS_API.mask_and_compare_pictures("IR_Ch_720_ref", "IR_Picture", "IR_Ch_720_MASK")
                                 video_result_2 = NOS_API.mask_and_compare_pictures("IR_Ch_Eng_720_ref", "IR_Picture", "IR_Ch_720_MASK_Eng")
-                                if (video_result_1 < TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD and video_result_2 < TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
+                                if (video_result_1 < NOS_API.thres and video_result_2 < NOS_API.thres):
                                     NOS_API.update_test_slot_comment("Error code: " + NOS_API.test_cases_results_info.ir_nok_error_code \
                                     + "; Error message: " + NOS_API.test_cases_results_info.ir_nok_error_message)
                                     NOS_API.set_error_message("IR")
                                     error_codes = NOS_API.test_cases_results_info.ir_nok_error_code
                                     error_messages = NOS_API.test_cases_results_info.ir_nok_error_message
                                     test = "Fail"
-                            if (video_result_2 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
+                            if (video_result_2 >= NOS_API.thres):
                                 lang = "Eng"
                         
                             TEST_CREATION_API.send_ir_rc_command("[SIGNAL_LEVEL_SETTINGS_720p_1]")           
@@ -469,7 +469,7 @@ def runTest():
                             return
                         video_result = NOS_API.compare_pictures("Signal_Value_Ch_ref", "Check", "[Signal_Value_Ch]")   
                         video_result_1 = NOS_API.compare_pictures("Signal_Value_Ch_Eng_ref", "Check", "[Signal_Value_Ch]")   
-                        if (video_result < TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD and video_result_1 < TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD and test != "Fail"):
+                        if (video_result < NOS_API.thres and video_result_1 < NOS_API.thres and test != "Fail"):
                             TEST_CREATION_API.send_ir_rc_command("[Exit_Menu]")
                             time.sleep(1)
                             TEST_CREATION_API.send_ir_rc_command("[INSTALLATION_BOOT_UP_SEQUENCE_Ch_slow]")
@@ -514,7 +514,7 @@ def runTest():
                                 return
                             video_result = NOS_API.compare_pictures("Signal_Value_Ch_ref", "Check", "[Signal_Value_Ch]")   
                             video_result_1 = NOS_API.compare_pictures("Signal_Value_Ch_Eng_ref", "Check", "[Signal_Value_Ch]")   
-                            if (video_result < TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD and video_result_1 < TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
+                            if (video_result < NOS_API.thres and video_result_1 < NOS_API.thres):
                                 TEST_CREATION_API.write_log_to_file("Doesn't Navigate to right place")
                                 NOS_API.update_test_slot_comment("Error code = " + NOS_API.test_cases_results_info.navigation_error_code \
                                                         + "; Error message: " + NOS_API.test_cases_results_info.navigation_error_message)
@@ -939,7 +939,7 @@ def runTest():
                                     return
                                 video_result_1 = NOS_API.mask_and_compare_pictures("IR_720_ref", "IR_Picture", "IR_720_MASK")
                                 video_result_2 = NOS_API.mask_and_compare_pictures("IR_720_ref2", "IR_Picture", "IR_720_MASK")
-                                if (video_result_1 <= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD and video_result_2 <= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
+                                if (video_result_1 <= NOS_API.thres and video_result_2 <= NOS_API.thres):
                                     TEST_CREATION_API.send_ir_rc_command("[Exit_Menu]")
                                     time.sleep(1)
                                     TEST_CREATION_API.send_ir_rc_command("[INSTALLATION_BOOT_UP_SEQUENCE_0]")
@@ -984,7 +984,7 @@ def runTest():
                                         return
                                     video_result_1 = NOS_API.mask_and_compare_pictures("IR_720_ref", "IR_Picture", "IR_720_MASK")
                                     video_result_2 = NOS_API.mask_and_compare_pictures("IR_720_ref2", "IR_Picture", "IR_720_MASK")
-                                    if (video_result_1 <= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD and video_result_2 <= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
+                                    if (video_result_1 <= NOS_API.thres and video_result_2 <= NOS_API.thres):
                                         NOS_API.update_test_slot_comment("Error code: " + NOS_API.test_cases_results_info.ir_nok_error_code \
                                                                 + "; Error message: " + NOS_API.test_cases_results_info.ir_nok_error_message)
                                         NOS_API.set_error_message("IR")
@@ -1036,7 +1036,7 @@ def runTest():
                                 NOS_API.deinitialize()
                                 return
                             video_result = NOS_API.compare_pictures("Signal_Value_Inst_ref", "Check", "[Signal_Value_Inst]")
-                            if (video_result < TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):                       
+                            if (video_result < NOS_API.thres):                       
                                 TEST_CREATION_API.send_ir_rc_command("[Left]")
                                 TEST_CREATION_API.send_ir_rc_command("[Left]")
                                 TEST_CREATION_API.send_ir_rc_command("[Left]")
@@ -1082,7 +1082,7 @@ def runTest():
                                 NOS_API.deinitialize()
                                 return
                             video_result_3 = NOS_API.compare_pictures("Signal_Value_Inst_ref", "ACT", "[Inst_Act_new]")
-                            if (video_result_3 < TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD): 
+                            if (video_result_3 < NOS_API.thres): 
                                 TEST_CREATION_API.send_ir_rc_command("[Inst_Act_New]")
                                 
                     if (test != "Fail" and No_Upgraded == 0):
@@ -1278,7 +1278,7 @@ def runTest():
                         if (NOS_API.test_cases_results_info.channel_boot_up_state or Modo_Canal):
                             TEST_CREATION_API.send_ir_rc_command("[OK]")
                             
-                            result = NOS_API.wait_for_multiple_pictures(["Installed_Channels_ref", "Installed_Channels_old_ref"], 15, ["[SIC]", "[SIC]"], [80, 80])
+                            result = NOS_API.wait_for_multiple_pictures(["Installed_Channels_ref", "Installed_Channels_old_ref"], 15, ["[SIC]", "[SIC]"], [NOS_API.thres, NOS_API.thres])
                             if (result == -2):
                                 test_result = "FAIL"
                                 TEST_CREATION_API.write_log_to_file("Image is not displayed on HDMI")
@@ -1321,7 +1321,7 @@ def runTest():
                                 return
                             if (result != -1):
                                 TEST_CREATION_API.send_ir_rc_command("[OK]")
-                                result_2 = NOS_API.wait_for_multiple_pictures(["Upgrade_ref", "Act_SSU"], 15, ["[FULL_SCREEN]", "[Act_SSU]"], [80, 80])
+                                result_2 = NOS_API.wait_for_multiple_pictures(["Upgrade_ref", "Act_SSU"], 15, ["[FULL_SCREEN]", "[Act_SSU]"], [NOS_API.thres, NOS_API.thres])
                                 if (result_2 == -2):
                                     test_result = "FAIL"
                                     TEST_CREATION_API.write_log_to_file("STB lost Signal.Possible Reboot.")
@@ -1366,7 +1366,7 @@ def runTest():
                                     TEST_CREATION_API.send_ir_rc_command("[POWER]")
                                     time.sleep(5)
                                     TEST_CREATION_API.send_ir_rc_command("[POWER_LESS]")
-                                    result_2 = NOS_API.wait_for_multiple_pictures(["Upgrade_ref", "Act_SSU"], 15, ["[FULL_SCREEN]", "[Act_SSU]"], [80, 80])
+                                    result_2 = NOS_API.wait_for_multiple_pictures(["Upgrade_ref", "Act_SSU"], 15, ["[FULL_SCREEN]", "[Act_SSU]"], [NOS_API.thres, NOS_API.thres])
                                 if (result_2 == -2):
                                     test_result = "FAIL"
                                     TEST_CREATION_API.write_log_to_file("STB lost Signal.Possible Reboot.")
@@ -1410,7 +1410,7 @@ def runTest():
                                 elif (result_2 == 0):  
                                     while(result == 0):
                                         time.sleep(2)
-                                        result = NOS_API.wait_for_multiple_pictures(["Upgrade_ref"], 5, ["[FULL_SCREEN]"], [80])
+                                        result = NOS_API.wait_for_multiple_pictures(["Upgrade_ref"], 5, ["[FULL_SCREEN]"], [NOS_API.thres])
                                     NOS_API.test_cases_results_info.DidUpgrade = 1
                                     if not(NOS_API.grab_picture("Sw_Upgrade")):
                                         test_result = "FAIL"
@@ -1453,7 +1453,7 @@ def runTest():
                                         NOS_API.deinitialize()
                                         return
                                     video_result = NOS_API.compare_pictures("Upgrade_ref", "Sw_Upgrade");
-                                    if(video_result >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
+                                    if(video_result >= NOS_API.thres):
                                         time.sleep(60)
                                 elif (result_2 == 1):
                                     time.sleep(5)
@@ -1506,7 +1506,7 @@ def runTest():
                                                 return
                                             video_result_2 = NOS_API.compare_pictures("installation_boot_up_Eng_ref", "After_SW")
                                             video_result_3 = NOS_API.compare_pictures("installation_boot_up_ref", "After_SW")
-                                            if ((video_result_2 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD) or (video_result_3 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD)):
+                                            if ((video_result_2 >= NOS_API.thres) or (video_result_3 >= NOS_API.thres)):
                                                 TEST_CREATION_API.send_ir_rc_command("[INSTALLATION_BOOT_UP_SEQUENCE_0]")
                                                 TEST_CREATION_API.send_ir_rc_command("[INSTALLATION_BOOT_UP_SEQUENCE_1]")
                                                 TEST_CREATION_API.send_ir_rc_command("[INSTALLATION_BOOT_UP_SEQUENCE_2]")
@@ -1553,7 +1553,7 @@ def runTest():
                                                     NOS_API.deinitialize()
                                                     return
                                                 video_result_3 = NOS_API.compare_pictures("Upgrade_ref", "NAGRA");
-                                                if (video_result_3 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
+                                                if (video_result_3 >= NOS_API.thres):
                                                     time.sleep(180)
                                                     if not(NOS_API.grab_picture("Sw_Upgrade_1")):
                                                         test_result = "FAIL"
@@ -1596,7 +1596,7 @@ def runTest():
                                                         NOS_API.deinitialize()
                                                         return
                                                     video_result = NOS_API.compare_pictures("Upgrade_ref", "Sw_Upgrade_1");
-                                                    if(video_result >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
+                                                    if(video_result >= NOS_API.thres):
                                                         time.sleep(60)
                                             else:
                                                 if not(NOS_API.grab_picture("NAGRA")):
@@ -1640,10 +1640,10 @@ def runTest():
                                                     NOS_API.deinitialize()
                                                     return
                                                 video_result_3 = NOS_API.compare_pictures("Upgrade_ref", "NAGRA");
-                                                if (video_result_3 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
+                                                if (video_result_3 >= NOS_API.thres):
                                                     while(result == 0):
                                                         time.sleep(2)
-                                                        result = NOS_API.wait_for_multiple_pictures(["Upgrade_ref"], 5, ["[FULL_SCREEN]"], [80])
+                                                        result = NOS_API.wait_for_multiple_pictures(["Upgrade_ref"], 5, ["[FULL_SCREEN]"], [NOS_API.thres])
                                                     if not(NOS_API.grab_picture("Sw_Upgrade_1")):
                                                         test_result = "FAIL"
                                                         TEST_CREATION_API.write_log_to_file("HDMI NOK")
@@ -1685,7 +1685,7 @@ def runTest():
                                                         NOS_API.deinitialize()
                                                         return
                                                     video_result = NOS_API.compare_pictures("Upgrade_ref", "Sw_Upgrade_1");
-                                                    if(video_result >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
+                                                    if(video_result >= NOS_API.thres):
                                                         time.sleep(60)
                                     else:
                                         test_result = "FAIL"
@@ -1780,7 +1780,7 @@ def runTest():
                                 return
                             video_result = NOS_API.compare_pictures("Inst_error_ref", "Inst_Error_check")
                             video_result_1 = NOS_API.compare_pictures("Inst_Error_ref1", "Inst_Error_check")
-                            if (video_result >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result_1 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
+                            if (video_result >= NOS_API.thres or video_result_1 >= NOS_API.thres):
                                 TEST_CREATION_API.send_ir_rc_command("[Left]")
                                 TEST_CREATION_API.send_ir_rc_command("[Left]")
                                 TEST_CREATION_API.send_ir_rc_command("[Left]")
@@ -1840,10 +1840,10 @@ def runTest():
                                     return
                                 video_result = NOS_API.compare_pictures("Upgrade_ref", "Inst_Error_check");
                                 video_result_1 = NOS_API.compare_pictures("Act_SSU", "Inst_Error_check", "[Act_SSU]");
-                                if (video_result >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
+                                if (video_result >= NOS_API.thres):
                                     while(result == 0):
                                         time.sleep(2)
-                                        result = NOS_API.wait_for_multiple_pictures(["Upgrade_ref"], 5, ["[FULL_SCREEN]"], [80])
+                                        result = NOS_API.wait_for_multiple_pictures(["Upgrade_ref"], 5, ["[FULL_SCREEN]"], [NOS_API.thres])
                                     NOS_API.test_cases_results_info.DidUpgrade = 1
                                     if not(NOS_API.grab_picture("Sw_Upgrade")):
                                         test_result = "FAIL"
@@ -1886,9 +1886,9 @@ def runTest():
                                         NOS_API.deinitialize()
                                         return
                                     video_result = NOS_API.compare_pictures("Upgrade_ref", "Sw_Upgrade");
-                                    if(video_result >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
+                                    if(video_result >= NOS_API.thres):
                                         time.sleep(60)
-                                elif (video_result_1 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
+                                elif (video_result_1 >= NOS_API.thres):
                                     time.sleep(5)
                                     NOS_API.test_cases_results_info.DidUpgrade = 1
                                     if (NOS_API.wait_for_signal_sw_upgrade_thomson(350)):
@@ -1939,7 +1939,7 @@ def runTest():
                                                 return
                                             video_result_2 = NOS_API.compare_pictures("installation_boot_up_Eng_ref", "After_SW")
                                             video_result_3 = NOS_API.compare_pictures("installation_boot_up_ref", "After_SW")
-                                            if ((video_result_2 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD) or (video_result_3 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD)):
+                                            if ((video_result_2 >= NOS_API.thres) or (video_result_3 >= NOS_API.thres)):
                                                 TEST_CREATION_API.send_ir_rc_command("[INSTALLATION_BOOT_UP_SEQUENCE_0]")
                                                 TEST_CREATION_API.send_ir_rc_command("[INSTALLATION_BOOT_UP_SEQUENCE_1]")
                                                 TEST_CREATION_API.send_ir_rc_command("[INSTALLATION_BOOT_UP_SEQUENCE_2]")
@@ -1986,7 +1986,7 @@ def runTest():
                                                     NOS_API.deinitialize()
                                                     return
                                                 video_result_3 = NOS_API.compare_pictures("Upgrade_ref", "NAGRA");
-                                                if (video_result_3 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
+                                                if (video_result_3 >= NOS_API.thres):
                                                     time.sleep(180)
                                                     if not(NOS_API.grab_picture("Sw_Upgrade_1")):
                                                         test_result = "FAIL"
@@ -2029,7 +2029,7 @@ def runTest():
                                                         NOS_API.deinitialize()
                                                         return
                                                     video_result = NOS_API.compare_pictures("Upgrade_ref", "Sw_Upgrade_1");
-                                                    if(video_result >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
+                                                    if(video_result >= NOS_API.thres):
                                                         time.sleep(60)
                                             else:
                                                 if not(NOS_API.grab_picture("NAGRA")):
@@ -2073,10 +2073,10 @@ def runTest():
                                                     NOS_API.deinitialize()
                                                     return
                                                 video_result_3 = NOS_API.compare_pictures("Upgrade_ref", "NAGRA");
-                                                if (video_result_3 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
+                                                if (video_result_3 >= NOS_API.thres):
                                                     while(result == 0):
                                                         time.sleep(2)
-                                                        result = NOS_API.wait_for_multiple_pictures(["Upgrade_ref"], 5, ["[FULL_SCREEN]"], [80])
+                                                        result = NOS_API.wait_for_multiple_pictures(["Upgrade_ref"], 5, ["[FULL_SCREEN]"], [NOS_API.thres])
                                                     if not(NOS_API.grab_picture("Sw_Upgrade_1")):
                                                         test_result = "FAIL"
                                                         TEST_CREATION_API.write_log_to_file("HDMI NOK")
@@ -2118,7 +2118,7 @@ def runTest():
                                                         NOS_API.deinitialize()
                                                         return
                                                     video_result = NOS_API.compare_pictures("Upgrade_ref", "Sw_Upgrade_1");
-                                                    if(video_result >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
+                                                    if(video_result >= NOS_API.thres):
                                                         time.sleep(60)
                                     else:
                                         test_result = "FAIL"
@@ -2202,7 +2202,7 @@ def runTest():
                                     NOS_API.deinitialize()
                                     return
                                 video_result = NOS_API.compare_pictures("Upgrade_ref_576", "Inst_Error_check");
-                                if (video_result >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
+                                if (video_result >= NOS_API.thres):
                                     while(result == 0):
                                         time.sleep(2)
                                         result = NOS_API.wait_for_multiple_pictures(["Upgrade_ref_576"], 5, ["[FULL_SCREEN_576]"], [40])
@@ -2248,7 +2248,7 @@ def runTest():
                                         NOS_API.deinitialize()
                                         return
                                     video_result = NOS_API.compare_pictures("Upgrade_ref_576", "Sw_Upgrade");
-                                    if(video_result >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
+                                    if(video_result >= NOS_API.thres):
                                         time.sleep(60)
                             elif (video_height == "1080"):
                                 if not(NOS_API.grab_picture("Inst_Error_check")):
@@ -2292,10 +2292,10 @@ def runTest():
                                     NOS_API.deinitialize()
                                     return
                                 video_result = NOS_API.compare_pictures("Upgrade_ref_1080", "Inst_Error_check");
-                                if (video_result >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
+                                if (video_result >= NOS_API.thres):
                                     while(result == 0):
                                         time.sleep(2)
-                                        result = NOS_API.wait_for_multiple_pictures(["Upgrade_ref_1080"], 5, ["[FULL_SCREEN_1080]"], [80])
+                                        result = NOS_API.wait_for_multiple_pictures(["Upgrade_ref_1080"], 5, ["[FULL_SCREEN_1080]"], [NOS_API.thres])
                                     NOS_API.test_cases_results_info.DidUpgrade = 1
                                     if not(NOS_API.grab_picture("Sw_Upgrade")):
                                         test_result = "FAIL"
@@ -2338,7 +2338,7 @@ def runTest():
                                         NOS_API.deinitialize()
                                         return
                                     video_result = NOS_API.compare_pictures("Upgrade_ref_1080", "Sw_Upgrade");
-                                    if(video_result >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
+                                    if(video_result >= NOS_API.thres):
                                         time.sleep(60)
                     else:
                         break

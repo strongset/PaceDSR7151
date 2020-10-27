@@ -286,8 +286,10 @@ def runTest():
                         return
                     video_result = NOS_API.compare_pictures("service_2_ref", "service_2", "[HALF_SCREEN]")
                     video_result_1 = NOS_API.compare_pictures("service_2_ref_2", "service_2", "[HALF_SCREEN]")
+                    video_result_2 = NOS_API.compare_pictures("service_2_ref_3", "service_2", "[HALF_SCREEN]")
+                    video_result_3 = NOS_API.compare_pictures("service_2_ref_4", "service_2", "[HALF_SCREEN]")
                     ## Check if STB zap to horizontal polarization channel (check image and audio)
-                    if ((video_result >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD) or (video_result_1 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD)):                  
+                    if ((video_result >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD) or (video_result_1 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD) or (video_result_2 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD) or (video_result_3 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD)):                  
                         # Record audio from HDMI
                         TEST_CREATION_API.record_audio("audio_chUp", MAX_RECORD_AUDIO_TIME)
                         
@@ -825,9 +827,11 @@ def runTest():
                                 NOS_API.deinitialize()
                                 return
                             video_result = NOS_API.compare_pictures("service_1_ref", "service_1", "[HALF_SCREEN]")
+                            video_result_1 = NOS_API.compare_pictures("service_1_ref_2", "service_1", "[HALF_SCREEN]")
+                            video_result_2 = NOS_API.compare_pictures("service_1_ref_3", "service_1", "[HALF_SCREEN]")
             
                             ## Check if STB zap to horizontal polarization channel (check image and audio)
-                            if (video_result >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
+                            if (video_result >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result_1 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result_2 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
             
                                 ## Record audio from HDMI
                                 TEST_CREATION_API.record_audio("audio_chDown", MAX_RECORD_AUDIO_TIME)
@@ -1289,9 +1293,11 @@ def runTest():
                         counter = 3
                         ## Compare grabbed and expected image and get result of comparison
                         video_result = NOS_API.compare_pictures("HDMI_video_ref", "HDMI_video", "[HALF_SCREEN_1080p]")
+                        video_result_1 = NOS_API.compare_pictures("HDMI_video_ref_2", "HDMI_video", "[HALF_SCREEN_1080p]")
+                        video_result_2 = NOS_API.compare_pictures("HDMI_video_ref_3", "HDMI_video", "[HALF_SCREEN_1080p]")
 
                         ## Check video analysis results and update comments
-                        if (video_result >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
+                        if (video_result >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result_1 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result_2 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
                             ## Set test result to PASS
                             HDMI_1080i_Result = True
                             TEST_CREATION_API.write_log_to_file("Video Result: "+str(video_result))
@@ -1375,6 +1381,8 @@ def runTest():
                                     return
                                 ## Compare grabbed and expected image and get result of comparison
                                 video_result = NOS_API.compare_pictures("SCART_video_ref", "SCART_video", "[HALF_SCREEN_576p]")
+                                video_result_1 = NOS_API.compare_pictures("SCART_video_ref_2", "SCART_video", "[HALF_SCREEN_576p]")
+                                video_result_2 = NOS_API.compare_pictures("SCART_video_ref_3", "SCART_video", "[HALF_SCREEN_576p]")
                                 
                             except Exception as error:
                                 ## Set test result to INCONCLUSIVE
@@ -1383,7 +1391,7 @@ def runTest():
                                 TEST_CREATION_API.write_log_to_file("There is no signal on SCART interface.")
                                 
                             ## Check video analysis results and update comments
-                            if (video_result >= NOS_API.DEFAULT_CVBS_VIDEO_THRESHOLD):
+                            if (video_result >= NOS_API.DEFAULT_CVBS_VIDEO_THRESHOLD or video_result_1 >= NOS_API.DEFAULT_CVBS_VIDEO_THRESHOLD or video_result_2 >= NOS_API.DEFAULT_CVBS_VIDEO_THRESHOLD):
                                 ## Set test result to PASS
                                 test_result_SCART_video = True
                                 TEST_CREATION_API.write_log_to_file("Video Result: "+str(video_result))
@@ -1854,8 +1862,9 @@ def runTest():
                                 return
                             
                             video_result = NOS_API.compare_pictures("Factory_Reset_ref", "Factory_Reset", "[Factory_Reset]")
+                            video_result_1 = NOS_API.compare_pictures("Factory_Reset_ref_2", "Factory_Reset", "[Factory_Reset]")
                             
-                            if not(video_result >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
+                            if not(video_result >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result_1 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
                                 TEST_CREATION_API.send_ir_rc_command("[EXIT_ZON_BOX]")
                                 time.sleep(1)
                                 TEST_CREATION_API.send_ir_rc_command("[Factory_Reset]")
@@ -1900,9 +1909,10 @@ def runTest():
                                     NOS_API.deinitialize()
                                     return
                                 
-                                video_result_1 = NOS_API.compare_pictures("Factory_Reset_ref", "Factory_Reset_1", "[Factory_Reset]")
+                                video_result_2 = NOS_API.compare_pictures("Factory_Reset_ref", "Factory_Reset_1", "[Factory_Reset]")
+                                video_result_3 = NOS_API.compare_pictures("Factory_Reset_ref_2", "Factory_Reset", "[Factory_Reset]")
                                 
-                                if not(video_result_1 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
+                                if not(video_result_2 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result_3 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
                                     TEST_CREATION_API.write_log_to_file("Navigation to resumo screen failed")
                                     NOS_API.set_error_message("Navegação")
                                     NOS_API.update_test_slot_comment("Error code = " + NOS_API.test_cases_results_info.navigation_error_code \
@@ -1948,7 +1958,7 @@ def runTest():
                                 time.sleep(2)
                                 
                             if (NOS_API.wait_for_signal_present(35)):
-                                if (NOS_API.wait_for_picture(["FTI_ref"], 30, "[FTI]", 0.0)):
+                                if (NOS_API.wait_for_picture(["FTI_ref"], 30, "[FTI]", 0.0, NOS_API.thres)):
                                     NOS_API.display_custom_dialog("Pressione no bot\xe3o 'Power'", 1, ["Continuar"], NOS_API.WAIT_TIME_TO_CLOSE_DIALOG) 
                                     time.sleep(2)
                                     if (NOS_API.is_signal_present_on_video_source()):
