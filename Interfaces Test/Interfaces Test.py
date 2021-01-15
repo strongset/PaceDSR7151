@@ -311,11 +311,17 @@ def runTest():
                                 error_codes = NOS_API.test_cases_results_info.hdmi_720p_signal_discontinuities_error_code + " " + NOS_API.test_cases_results_info.hdmi_720p_signal_interference_error_code
                                 error_messages = NOS_API.test_cases_results_info.hdmi_720p_signal_discontinuities_error_message + " " + NOS_API.test_cases_results_info.hdmi_720p_signal_interference_error_message
                                 chUp_counter = 3                           
-                            else:                      
-                                TEST_CREATION_API.send_ir_rc_command("[CH_4]")
-                                time.sleep(2)
-                                TEST_CREATION_API.send_ir_rc_command("[CH-]")
-                                TEST_CREATION_API.send_ir_rc_command("[CH+]")
+                            else:
+                                TEST_CREATION_API.send_ir_rc_command("[INFO_ZON_BOX_MENU_slow]")
+                                time.sleep(1)
+                                TEST_CREATION_API.send_ir_rc_command("[NAVIGATE_SC_MENU_FROM_INFO_ZON_BOX_MENU]")
+                                time.sleep(1)
+                                TEST_CREATION_API.send_ir_rc_command("[NAVIGATE_SC_MENU_FROM_INFO_ZON_BOX_MENU]")    
+                                time.sleep(1)                  
+                                # TEST_CREATION_API.send_ir_rc_command("[CH_4]")
+                                # time.sleep(2)
+                                # TEST_CREATION_API.send_ir_rc_command("[CH-]")
+                                # TEST_CREATION_API.send_ir_rc_command("[CH+]")
                                 chUp_counter = chUp_counter + 1
                     else:
                         if (chUp_counter == 2):
@@ -328,9 +334,15 @@ def runTest():
                             chUp_counter = 3
                         else:
                             if (chUp_counter == 0):
-                                TEST_CREATION_API.send_ir_rc_command("[CH_4]")
-                                TEST_CREATION_API.send_ir_rc_command("[CH-]")
-                                TEST_CREATION_API.send_ir_rc_command("[CH+]")
+                                TEST_CREATION_API.send_ir_rc_command("[INFO_ZON_BOX_MENU_slow]")
+                                time.sleep(1)
+                                TEST_CREATION_API.send_ir_rc_command("[NAVIGATE_SC_MENU_FROM_INFO_ZON_BOX_MENU]")
+                                time.sleep(1)
+                                TEST_CREATION_API.send_ir_rc_command("[NAVIGATE_SC_MENU_FROM_INFO_ZON_BOX_MENU]")
+                                time.sleep(1)
+                                # TEST_CREATION_API.send_ir_rc_command("[CH_4]")
+                                # TEST_CREATION_API.send_ir_rc_command("[CH-]")
+                                # TEST_CREATION_API.send_ir_rc_command("[CH+]")
                                 chUp_counter = chUp_counter + 1
                             else:
                                 chUp_counter = chUp_counter + 1
