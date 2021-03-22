@@ -98,10 +98,14 @@ def runTest():
                 TEST_CREATION_API.send_ir_rc_command("[VOL_MAX]")
         
                 ## Zap to service
-                TEST_CREATION_API.send_ir_rc_command("[CH_4]")
+                TEST_CREATION_API.send_ir_rc_command("[Channel_11]")
                 time.sleep(2)            
                     
-                while (chUp_counter < 3):                    
+                while (chUp_counter < 3):    
+                    if chUp_counter != 0:
+                        time.sleep(2)
+                        TEST_CREATION_API.send_ir_rc_command("[Channel_11]")
+                        time.sleep(2)                
                     #if (chUp_counter == 2):
                     #    try:
                     #        ## Return DUT to initial state and de-initialize grabber device
@@ -318,7 +322,7 @@ def runTest():
                                 time.sleep(1)
                                 TEST_CREATION_API.send_ir_rc_command("[NAVIGATE_SC_MENU_FROM_INFO_ZON_BOX_MENU]")    
                                 time.sleep(1)                  
-                                # TEST_CREATION_API.send_ir_rc_command("[CH_4]")
+                                # TEST_CREATION_API.send_ir_rc_command("[Channel_11]")
                                 # time.sleep(2)
                                 # TEST_CREATION_API.send_ir_rc_command("[CH-]")
                                 # TEST_CREATION_API.send_ir_rc_command("[CH+]")
@@ -340,7 +344,7 @@ def runTest():
                                 time.sleep(1)
                                 TEST_CREATION_API.send_ir_rc_command("[NAVIGATE_SC_MENU_FROM_INFO_ZON_BOX_MENU]")
                                 time.sleep(1)
-                                # TEST_CREATION_API.send_ir_rc_command("[CH_4]")
+                                # TEST_CREATION_API.send_ir_rc_command("[Channel_11]")
                                 # TEST_CREATION_API.send_ir_rc_command("[CH-]")
                                 # TEST_CREATION_API.send_ir_rc_command("[CH+]")
                                 chUp_counter = chUp_counter + 1
@@ -351,7 +355,7 @@ def runTest():
                 ###################
                 if (NOS_API.test_cases_results_info.chUp_state):
                     
-                    TEST_CREATION_API.send_ir_rc_command("[CH_3]")   
+                    TEST_CREATION_API.send_ir_rc_command("[Channel_40]")   
 
                     time.sleep(2)
                     
@@ -656,6 +660,9 @@ def runTest():
                       
                     if (NOS_API.is_video_playing):
                         while (chDown_counter < 3):
+                            if chDown_counter != 0:
+                                TEST_CREATION_API.send_ir_rc_command("[Channel_40]")
+                                time.sleep(2)
                             if (chDown_counter == 2):
                                 try:
                                     ## Return DUT to initial state and de-initialize grabber device
@@ -867,10 +874,16 @@ def runTest():
                                         error_codes = NOS_API.test_cases_results_info.hdmi_720p_signal_discontinuities_error_code + " " + NOS_API.test_cases_results_info.hdmi_720p_signal_interference_error_code
                                         error_messages = NOS_API.test_cases_results_info.hdmi_720p_signal_discontinuities_error_message + " " + NOS_API.test_cases_results_info.hdmi_720p_signal_interference_error_message
                                         chUp_counter = 3 
-                                    else:                        
-                                        TEST_CREATION_API.send_ir_rc_command("[CH_3]")
-                                        TEST_CREATION_API.send_ir_rc_command("[CH+]")
-                                        TEST_CREATION_API.send_ir_rc_command("[CH-]")
+                                    else:        
+                                        TEST_CREATION_API.send_ir_rc_command("[INFO_ZON_BOX_MENU_slow]")
+                                        time.sleep(1)
+                                        TEST_CREATION_API.send_ir_rc_command("[NAVIGATE_SC_MENU_FROM_INFO_ZON_BOX_MENU]")
+                                        time.sleep(1)
+                                        TEST_CREATION_API.send_ir_rc_command("[NAVIGATE_SC_MENU_FROM_INFO_ZON_BOX_MENU]")
+                                        time.sleep(1)                
+                                        # TEST_CREATION_API.send_ir_rc_command("[Channel_40]")
+                                        # TEST_CREATION_API.send_ir_rc_command("[CH+]")
+                                        # TEST_CREATION_API.send_ir_rc_command("[CH-]")
                                         chDown_counter = chDown_counter + 1
                             else:
                                 if (chDown_counter == 2):
@@ -881,10 +894,16 @@ def runTest():
                                     error_codes = NOS_API.test_cases_results_info.zap_channel_down_error_code
                                     error_messages = NOS_API.test_cases_results_info.zap_channel_down_error_message
                                     chDown_counter = 3
-                                else:                        
-                                    TEST_CREATION_API.send_ir_rc_command("[CH_3]")
-                                    TEST_CREATION_API.send_ir_rc_command("[CH+]")
-                                    TEST_CREATION_API.send_ir_rc_command("[CH-]")
+                                else:   
+                                    TEST_CREATION_API.send_ir_rc_command("[INFO_ZON_BOX_MENU_slow]")
+                                    time.sleep(1)
+                                    TEST_CREATION_API.send_ir_rc_command("[NAVIGATE_SC_MENU_FROM_INFO_ZON_BOX_MENU]")
+                                    time.sleep(1)
+                                    TEST_CREATION_API.send_ir_rc_command("[NAVIGATE_SC_MENU_FROM_INFO_ZON_BOX_MENU]")
+                                    time.sleep(1)                     
+                                    # TEST_CREATION_API.send_ir_rc_command("[Channel_40]")
+                                    # TEST_CREATION_API.send_ir_rc_command("[CH+]")
+                                    # TEST_CREATION_API.send_ir_rc_command("[CH-]")
                                     chDown_counter = chDown_counter + 1
             else:
                 TEST_CREATION_API.write_log_to_file("Image is not displayed on HDMI")

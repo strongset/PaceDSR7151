@@ -1261,7 +1261,7 @@ def runTest():
                     time.sleep(3)
                     if (NOS_API.is_signal_present_on_video_source()):
                         ## Zap to horizontal polarization channel
-                        TEST_CREATION_API.send_ir_rc_command("[Hor_CH]")
+                        TEST_CREATION_API.send_ir_rc_command("[Channel_11]")
                         
                         time.sleep(3)
                         while (counter < 3):       

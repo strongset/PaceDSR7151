@@ -1735,6 +1735,7 @@ def runTest():
                                 TEST_CREATION_API.send_ir_rc_command("[Info_Zon_Box_1]")
                         else:
                             TEST_CREATION_API.send_ir_rc_command("[INSTALLATION_BOOT_UP_SEQUENCE_2]")
+                            time.sleep(2)
                             TEST_CREATION_API.send_ir_rc_command("[OK]")
                             time.sleep(1)
                             
